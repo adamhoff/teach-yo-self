@@ -169,7 +169,7 @@ function update() {
 }
 ```
 
-## Define Preload Function
+### Define Preload Function
 
 The `preload()` function is used to load assets into the game. When your app starts, Phaser will automatically search for this function and initialize the block of code defined within it. In our `preload()` function, lets load in our two images.
 
