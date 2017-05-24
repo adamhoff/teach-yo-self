@@ -1,4 +1,4 @@
-# Phaser JS
+# Phaser JS Documentation
 
 [Phaser JS](http://phaser.io/) is a free open source framework for Canvas and WebGL powered browser games.
 
@@ -43,3 +43,50 @@ Some sample interview questions about Phaser would be
   - What do the functions do?
 
 - What is the difference between Arcade physics, Ninja physics, and p2.js?
+
+# Phaser JS Example
+
+## Getting Started
+
+First, you will need a web server to view the game you are creating. Without a web server, some features would be disabled in your browser.
+
+Download [XAMPP](https://www.apachefriends.org/xampp-files/7.1.4/xampp-osx-7.1.4-0-installer.dmg) for Mac
+
+> For Windows: [XAMPP](https://www.apachefriends.org/xampp-files/7.1.4/xampp-win32-7.1.4-0-VC14-installer.exe)
+
+Then, once XAMPP is installed and opened, click the "Manage Servers" tab. Apache Web Server should have a green circle next to it and say "Running."
+
+Next, click on the Apache Web Server and click configure. Change the port number from 80 to 8080.
+
+> This is needed because some programs use port 80 as its default port. Changing it prevents any problems this might bring.
+
+Now open your terminal and navigate to the XAMPP/htdocs directory.
+
+```bash
+$ cd /Applications/XAMPP/htdocs
+```
+
+> This is the directory in which we will be creating our game. The Apache server will only work for your game if your app is inside of this folder.
+
+Inside of the htdocs directory, create a new directory called "block_eater" and navigate into that directory.
+
+```bash
+$ mkdir block_eater
+$ cd block_eater
+```
+
+Inside the "block_eater" directory, create two directories. One called "lib" and the other "asset" and open up the app in atom.
+
+```bash
+$ mkdir lib
+$ mkdir asset
+$ atom .
+```
+
+The "lib" folder is where we will house [Phaser JS.min](https://github.com/photonstorm/phaser-ce/releases/download/v2.7.10/phaser.min.js) so download the file, and drag into the lib folder.
+
+The asset folder is where we will place our sprites for the game. Follow these links to download the two sprites we need for our game.
+
+> Right-click on each image and select "save as" and drag the downloaded files into the asset directory
+
+[Blue Square Sprite](https://raw.githubusercontent.com/Loonride/phaser-squares/master/asset/blue-square.png) [Red Square Sprite](https://raw.githubusercontent.com/Loonride/phaser-squares/master/asset/red-square.png)
