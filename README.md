@@ -70,7 +70,7 @@ $ cd /Applications/XAMPP/htdocs
 
 > This is the directory in which we will be creating our game. The Apache server will only work for your game if your app is inside of this folder.
 
-Inside of the htdocs directory, create a new directory called `block_eater` and navigate into that directory.
+Inside of the `htdocs` directory, create a new directory called `block_eater` and navigate into that directory.
 
 ```bash
 $ mkdir block_eater
@@ -190,3 +190,153 @@ function preload() {
   game.state.backgroundColor = '#eee';
 }
 ```
+
+### Define Create Function
+
+In the `create()` function we need to start up the arcade physics engine. The arcade engine is an extremely light-weight library that detects collision between elements.
+
+```js
+function create() {
+  game.physics.startSystem(Phaser.Physics.ARCADE);
+}
+```
+
+Initialize the keyboard arrows to create the game controls.
+
+```js
+function create() {
+  game.physics.startSystem(Phaser.Physics.ARCADE);
+  arrows = game.input.keyboard.createCursorKeys();
+}
+```
+
+Next we need to add our player sprite and anchor its position to the center of the player. We also have to enable the arcade physics for the sprite and make sure that the player can't leave the game canvas.
+
+```js
+function create() {
+  game.physics.startSystem(Phaser.Physics.ARCADE);
+  arrows = game.input.keyboard.createCursorKeys();
+
+  player = game.add.sprite(width * 0.5, height * 0.5, 'player');
+  player.anchor.set(0.5);
+
+  game.physics.enable(player, Phaser.Physics.ARCADE);
+  //makes player collide with edge of canvas
+  player.body.collideWorldBounds = true;
+}
+```
+
+Now that the player has been created, lets make the food. This is done by creating a group of multiple food objects.
+
+```js
+function create() {
+  game.physics.startSystem(Phaser.Physics.ARCADE);
+  arrows = game.input.keyboard.createCursorKeys();
+
+  player = game.add.sprite(width * 0.5, height * 0.5, 'player');
+  player.anchor.set(0.5);
+
+  game.physics.enable(player, Phaser.Physics.ARCADE);
+  //makes player collide with edge of canvas
+  player.body.collideWorldBounds = true;
+
+  food = game.add.group();
+  //The `food.create()` parameters specify the x and y location of the object, and the 'food' key to specify the red square sprite.
+  food.create(width * 0.1, height * 0.1, 'food');
+  food.create(width * 0.1, height * 0.9, 'food');
+  food.create(width * 0.2, height * 0.4, 'food');
+  food.create(width * 0.8, height * 0.6, 'food');
+  food.create(width * 0.9, height * 0.1, 'food');
+  food.create(width * 0.9, height * 0.9, 'food');
+  //set the anchors of the food sprites to their centers
+  for (var i in food.children) {
+    food.children[i].anchor.set(0.5);
+  }
+}
+```
+
+> `game.add.group()` is an object that holds a collection of children objects, acting like an array.
+
+Don't forget to enable arcade physics for the food.
+
+```js
+  game.physics.enable(food, Phaser.Physics.ARCADE);
+```
+
+The last piece of our create function will be the score. This is done by calling the `add.text()` function on our game object, setting the x and y position of the text, and specifying the text's value to our 'score' variable we defined earlier.
+
+```js
+  game.physics.enable(food, Phaser.Physics.ARCADE);
+
+  scoreText = game.add.text(5, 3, score);
+```
+
+### Define Update Function
+
+The `update()` function is what Phaser calls continuously in order to read any state changes within our game. Let's use this to change our 'player' sprite's position based on keydown presses.
+
+
+```js
+function update() {
+  //Moves player up or down based on which arrow key is pressed
+  if (arrows.up.isDown) {
+      player.body.velocity.y = -speed;
+    } else if (arrows.down.isDown) {
+      player.body.velocity.y = speed;
+    } else {
+      player.body.velocity.y = 0;
+    }  
+    //Moves player left or right based on which arrow key is pressed
+    if (arrows.left.isDown) {
+    player.body.velocity.x = -speed;
+  } else if (arrows.right.isDown) {
+    player.body.velocity.x = speed;
+  } else {
+    player.body.velocity.x = 0;
+  }
+}
+```
+
+That's almost it for our update function. The only thing we need to do now is create an `consume()` function that destroys the food when the player and the food overlap, then call it inside the update function.
+
+```js
+function consume(player, food) {
+  //remove the piece of food
+  food.kill();
+  //update the score
+  score++;
+  scoreText.text = score;
+}
+```
+Our `consume()` function takes two arguments: 'player' and 'food'. When this function is called, the food will be removed, or "killed", from the game board and our score will increase by one point.
+
+The only thing left is to call, inside `update()`, the `consume()` function when the two sprites overlap.
+
+```js
+function update() {
+  //Moves player up or down based on which arrow key is pressed
+  if (arrows.up.isDown) {
+      player.body.velocity.y = -speed;
+    } else if (arrows.down.isDown) {
+      player.body.velocity.y = speed;
+    } else {
+      player.body.velocity.y = 0;
+    }  
+    //Moves player left or right based on which arrow key is pressed
+    if (arrows.left.isDown) {
+    player.body.velocity.x = -speed;
+  } else if (arrows.right.isDown) {
+    player.body.velocity.x = speed;
+  } else {
+    player.body.velocity.x = 0;
+  }
+
+  game.physics.arcade.overlap(player, food, consume);
+}
+```
+## Playing Our Game
+
+To play the game, first make sure your Apache Web Server is running.
+Then navigate to `http://localhost:8080/block_eater` to play your game.
+
+If there are issues with the viewing or playing of your game, go back through the tutorial to see if you missed anything.
