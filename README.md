@@ -119,9 +119,9 @@ Our `index.html` file will only hold a simple boiler plate for our game. In atom
 > This is our complete "index.html" file. All we are doing here is making a title and linking to our "phaser.min.js" and "game.js" files.
 
 
-### Creating the game canvas.
+## Creating Game Canvas
 
-In order to create a game. We first must make a game board.
+In order to create a game, we first must make a game board.
 
 ```js
 var width = 800;
@@ -142,7 +142,7 @@ The fourth parameter is used to specify what element the canvas will be appended
 
 > Another option for the fourth parameter is to use an empty string '' in place of null. Both serve the same purpose.
 
-### Initializing Variables
+## Initializing Variables
 
 Next lets initialize a few variables so we can use them later on.
 
@@ -155,7 +155,7 @@ var score = 0;
 var scoreText;
 ```
 
-### Creating Essential Functions
+## Creating Essential Functions
 
 Create three empty functions: `preload()`, `create()`, and `update()`.
 
@@ -170,7 +170,8 @@ function update() {
 
 }
 ```
-### Define Preload Function
+
+## Define Preload Function
 
 The `preload()` function is used to load assets into the game. When your app starts, Phaser will automatically search for this function and initialize the block of code defined within it. In our `preload()` function, lets load in our two images.
 
