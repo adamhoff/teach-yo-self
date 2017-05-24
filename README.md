@@ -142,8 +142,6 @@ The fourth parameter is used to specify what element the canvas will be appended
 
 > Another option for the fourth parameter is to use an empty string '' in place of null. Both serve the same purpose.
 
-## Initializing Variables
-
 Next lets initialize a few variables so we can use them later on.
 
 ```js
