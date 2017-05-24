@@ -75,7 +75,7 @@ $ mkdir block_eater
 $ cd block_eater
 ```
 
-Inside the "block_eater" directory, create two directories. One called "lib" and the other "asset" and open up the app in atom.
+Inside the "block_eater" directory, create two directories. One named "lib" and the other "asset" and open up the app in atom.
 
 ```bash
 $ mkdir lib
@@ -90,3 +90,27 @@ The asset folder is where we will place our sprites for the game. Follow these l
 > Right-click on each image and select "save as" and drag the downloaded files into the asset directory
 
 [Blue Square Sprite](https://raw.githubusercontent.com/Loonride/phaser-squares/master/asset/blue-square.png) | | [Red Square Sprite](https://raw.githubusercontent.com/Loonride/phaser-squares/master/asset/red-square.png)
+
+Next, create an "index.html" file and a "game.js" file
+
+```bash
+$ touch index.html game.js
+```
+
+Our "index.html" file will only hold a simple boiler plate for our game. In atom, in your "index.html" file, write the following code snippet:
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Phaser Squares</title>
+    <script src="lib/phaser.min.js"></script>
+    <script src="game.js"></script>
+</head>
+<body>
+</body>
+</html>
+```
+
+> All we are doing here is making a title and linking to our "phaser.min.js" and "game.js" files
