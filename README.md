@@ -44,7 +44,9 @@ Some sample interview questions about Phaser would be
 
 - What is the difference between Arcade physics, Ninja physics, and p2.js?
 
-# Phaser JS Example
+# Phaser JS Tutorial
+
+This tutorial is a guide to create a very simple Phaser game for complete beginners.
 
 ## Getting Started
 
@@ -60,7 +62,7 @@ Next, click on the Apache Web Server and click configure. Change the port number
 
 > This is needed because some programs use port 80 as its default port. Changing it prevents any problems this might bring.
 
-Now open your terminal and navigate to the XAMPP/htdocs directory.
+Now open your terminal and navigate to the `XAMPP/htdocs` directory.
 
 ```bash
 $ cd /Applications/XAMPP/htdocs
@@ -68,14 +70,14 @@ $ cd /Applications/XAMPP/htdocs
 
 > This is the directory in which we will be creating our game. The Apache server will only work for your game if your app is inside of this folder.
 
-Inside of the htdocs directory, create a new directory called "block_eater" and navigate into that directory.
+Inside of the htdocs directory, create a new directory called `block_eater` and navigate into that directory.
 
 ```bash
 $ mkdir block_eater
 $ cd block_eater
 ```
 
-Inside the "block_eater" directory, create two directories. One named "lib" and the other "asset" and open up the app in atom.
+Inside the `block_eater` directory, create two directories. One named `lib` and the other `asset` and open up the app in atom.
 
 ```bash
 $ mkdir lib
@@ -84,27 +86,28 @@ $ atom .
 ```
 
 The "lib" folder is where we will house [Phaser JS.min](https://github.com/photonstorm/phaser-ce/releases/download/v2.7.10/phaser.min.js) so download the file, and drag into the lib folder.
-The asset folder is where we will place our sprites for the game. Follow these links to download the two sprites we need for our game:
+The asset folder is where we will place our images for the game. Follow these links to download the two images we need for our game:
 [Blue Square Sprite](https://raw.githubusercontent.com/Loonride/phaser-squares/master/asset/blue-square.png) | | [Red Square Sprite](https://raw.githubusercontent.com/Loonride/phaser-squares/master/asset/red-square.png)
 
-> Right-click on each image and select "save as" and drag the downloaded files into the asset directory
+> Right-click on each image and select "save as" and drag the downloaded images into the asset directory
 
 
-
-Next, create an "index.html" file and a "game.js" file
+Next, create an `index.html` file and a `game.js` file
 
 ```bash
 $ touch index.html game.js
 ```
 
-Our "index.html" file will only hold a simple boiler plate for our game. In atom, in your "index.html" file write the following code snippet:
+### Creating index.html
+
+Our `index.html` file will only hold a simple boiler plate for our game. In atom, in your `index.html` file write the following code snippet:
 
 ```html
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>Phaser Squares</title>
+    <title>Block Eater</title>
     <script src="lib/phaser.min.js"></script>
     <script src="game.js"></script>
 </head>
@@ -114,3 +117,77 @@ Our "index.html" file will only hold a simple boiler plate for our game. In atom
 ```
 
 > This is our complete "index.html" file. All we are doing here is making a title and linking to our "phaser.min.js" and "game.js" files.
+
+
+### Creating the game canvas.
+
+In order to create a game. We first must make a game board.
+
+```js
+var width = 800;
+var height = 600;
+
+var game = new Phaser.Game(width, height, Phaser.AUTO, null, {
+  preload: preload,
+  create: create,
+  update: update
+});
+```
+
+Here, the `game` variable creates a new instance of a Phaser.Game object. The first two parameters set the width and height of the game's canvas. The third parameter, `Phaser.AUTO` automatically tries to use WebGL to render the canvas, but will use canvas if WebGL is not available.
+
+> You could also use `Phaser.WEBGL` or `Phaser.CANVAS` however, `Phaser.AUTO` is recommended.
+
+The fourth parameter is used to specify what element the canvas will be appended to. `null` is used here since we want the canvas to be appended to the body of the page and not another element. The final parameter is an object that contains the three essential Phaser functions to create a game.
+
+> Another option for the fourth parameter is to use an empty string '' in place of null. Both serve the same purpose.
+
+### Initializing Variables
+
+Next lets initialize a few variables so we can use them later on.
+
+```js
+var player;
+var food;
+var arrows;
+var speed = 175;
+var score = 0;
+var scoreText;
+```
+
+### Creating Essential Functions
+
+Create three empty functions: `preload()`, `create()`, and `update()`.
+
+```js
+function preload() {
+
+}
+function create() {
+
+}
+function update() {
+
+}
+```
+### Define Preload Function
+
+The `preload()` function is used to load assets into the game. When your app starts, Phaser will automatically search for this function and initialize the block of code defined within it. In our `preload()` function, lets load in our two images.
+
+```js
+function preload() {
+  game.load.image('player', 'asset/blue-square.png');
+  game.load.image('food', 'asset/red-square.png');
+}
+```
+> 'player' and 'food' are the names in which Phaser will recognize our assets.
+
+While we're at it, lets change the background color of our canvas from white to grey so we can see the border of our canvas.
+```js
+function preload() {
+  game.load.image('player', 'asset/blue-square.png');
+  game.load.image('food', 'asset/red-square.png');
+
+  game.state.backgroundColor = '#eee';
+}
+```
