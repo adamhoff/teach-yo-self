@@ -85,8 +85,8 @@ $ mkdir asset
 $ atom .
 ```
 
-The "lib" folder is where we will house [Phaser JS.min](https://github.com/photonstorm/phaser-ce/releases/download/v2.7.10/phaser.min.js) so download the file, and drag into the lib folder.
-The asset folder is where we will place our images for the game. Follow these links to download the two images we need for our game:
+The `lib` folder is where we will house [Phaser JS.min](https://github.com/photonstorm/phaser-ce/releases/download/v2.7.10/phaser.min.js) so download the file, and place it into the `lib`.
+The `asset` folder is where we will place our images for the game. Follow these links to download the two images we will be using for our game:
 [Blue Square Sprite](https://raw.githubusercontent.com/Loonride/phaser-squares/master/asset/blue-square.png) | | [Red Square Sprite](https://raw.githubusercontent.com/Loonride/phaser-squares/master/asset/red-square.png)
 
 > Right-click on each image and select "save as" and drag the downloaded images into the asset directory
