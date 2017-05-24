@@ -84,12 +84,12 @@ $ atom .
 ```
 
 The "lib" folder is where we will house [Phaser JS.min](https://github.com/photonstorm/phaser-ce/releases/download/v2.7.10/phaser.min.js) so download the file, and drag into the lib folder.
-
-The asset folder is where we will place our sprites for the game. Follow these links to download the two sprites we need for our game.
+The asset folder is where we will place our sprites for the game. Follow these links to download the two sprites we need for our game:
+[Blue Square Sprite](https://raw.githubusercontent.com/Loonride/phaser-squares/master/asset/blue-square.png) | | [Red Square Sprite](https://raw.githubusercontent.com/Loonride/phaser-squares/master/asset/red-square.png)
 
 > Right-click on each image and select "save as" and drag the downloaded files into the asset directory
 
-[Blue Square Sprite](https://raw.githubusercontent.com/Loonride/phaser-squares/master/asset/blue-square.png) | | [Red Square Sprite](https://raw.githubusercontent.com/Loonride/phaser-squares/master/asset/red-square.png)
+
 
 Next, create an "index.html" file and a "game.js" file
 
@@ -97,7 +97,7 @@ Next, create an "index.html" file and a "game.js" file
 $ touch index.html game.js
 ```
 
-Our "index.html" file will only hold a simple boiler plate for our game. In atom, in your "index.html" file, write the following code snippet:
+Our "index.html" file will only hold a simple boiler plate for our game. In atom, in your "index.html" file write the following code snippet:
 
 ```html
 <!DOCTYPE html>
@@ -113,4 +113,4 @@ Our "index.html" file will only hold a simple boiler plate for our game. In atom
 </html>
 ```
 
-> All we are doing here is making a title and linking to our "phaser.min.js" and "game.js" files
+> This is our complete "index.html" file. All we are doing here is making a title and linking to our "phaser.min.js" and "game.js" files.
