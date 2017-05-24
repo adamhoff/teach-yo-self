@@ -334,7 +334,7 @@ function update() {
   game.physics.arcade.overlap(player, food, consume);
 }
 ```
-## Playing Our Game
+## Playing Your Game
 
 To play the game, first make sure your Apache Web Server is running.
 Then navigate to `http://localhost:8080/block_eater` to play your game.
